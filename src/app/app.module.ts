@@ -8,13 +8,16 @@ import { AppComponent } from './app.component';
 import { CursoComponent } from './components/curso/curso.component';
 import { ProfesorComponent } from './components/profesor/profesor.component';
 import { routing, appRoutingProviders } from './app.routing';
+import { ModalService } from './services/modal.service';
+import { ModalComponent } from './components/shared/modal.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CursoComponent,
-    ProfesorComponent
+    ProfesorComponent,
+    ModalComponent
   ],
   imports: [
     HttpModule,
@@ -25,7 +28,9 @@ import { routing, appRoutingProviders } from './app.routing';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    ModalService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

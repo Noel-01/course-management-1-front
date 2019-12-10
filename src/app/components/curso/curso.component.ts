@@ -3,6 +3,7 @@ import { curso } from 'src/app/model/curso';
 import { CursoService } from 'src/app/services/curso.service';
 import { ProfesorService } from 'src/app/services/profesor.service';
 import { profesor } from 'src/app/model/profesor';
+import { ModalService } from 'src/app/services/modal.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class CursoComponent implements OnInit {
 
   constructor(
     private _cursoService: CursoService,
-    private _profesorService: ProfesorService
+    private _profesorService: ProfesorService,
+    private modalService: ModalService
     ) {
     this.cursoNuevo = new curso();
     this.cursoNuevo.state=false;
@@ -32,8 +34,13 @@ export class CursoComponent implements OnInit {
 
   ngOnInit() {
     this.mostrarCursos()
-    this.getProfesores()
+    // this.getProfesores()
     this.getHoras()
+  }
+
+  closeModal() {
+    // this.modalService.open('test-modal');
+    this.modalService.close('test-modal');
   }
 
   mostrarCursos(){
@@ -48,6 +55,7 @@ export class CursoComponent implements OnInit {
   }
 
   getProfesores(){
+    this.modalService.open('test-modal');
     this._profesorService.getProfesores().subscribe((result)=>{
       this.profesores = result;
       console.log(this.profesores)
@@ -60,6 +68,7 @@ export class CursoComponent implements OnInit {
 
   //pasarle por aqui el curso nuevo que voy a guardar
   guardarCurso(){
+    this.modalService.close('test-modal');
     console.log("llega a guardar curso")
     console.log(this.cursoNuevo.state)
     console.log(this.cursoNuevo.title)
@@ -78,10 +87,10 @@ export class CursoComponent implements OnInit {
 
   }
 
-  closeModal() {
-    console.log("llega a closeModal")
-    this.mostrarCursos();
-  }
+  // closeModal() {
+  //   console.log("llega a closeModal")
+  //   this.mostrarCursos();
+  // }
 
   getHoras(){
     this.hoursLoop = new Array(); 

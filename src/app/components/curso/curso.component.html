@@ -28,13 +28,16 @@
           <li class="page-item"><a class="page-link" href="#">2</a></li>
           <li class="page-item"><a class="page-link" href="#">3</a></li>
           <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          <li id="m-5"> <a style="color:white" data-toggle="modal" data-target="#modalCrear" class="btn btn-primary btn"
-              (click)="getProfesores()">Nuevo Curso</a></li>
+          <!-- <li id="m-5"> <a style="color:white" data-toggle="modal" data-target="#modalCrear" class="btn btn-primary btn"
+              (click)="getProfesores()">Nuevo Curso</a></li> -->
+              <li id="m-5"> <a style="color:white" class="btn btn-primary btn"
+                (click)="getProfesores()">Nuevo Curso</a></li>
         </ul>
       </nav>
     </div>
   </div>
 </div>
+
 <div class="container">
   <!-- Modal Crear Curso -->
   <div class="modal fade" id="modalCrear" role="dialog">
@@ -117,7 +120,7 @@
                  <!-- </div>-->
                   <div class="form-group row">
                     <div class="col-sm-10">
-                      <button type="submit" (click)=guardarCurso() class="btn btn-primary"[disabled]="!formCrear.form.valid"
+                      <button type="button"  class="btn btn-primary" [disabled]="!formCrear.form.valid"
                       data-dismiss="modal">Añadir</button>
                     </div>
                   </div>
@@ -129,3 +132,91 @@
       </div>
     </div>
   </div>
+  </div>
+
+<app-modal id="test-modal" class="">
+  <h2 class="text-center">Delete Product</h2>
+  <div class="container">        
+    <div class="form-group">
+      <!-- <p>You will delete a product, It will also be deleted in users favorite lists. Are you sure?</p> -->
+      <!-- <button type="submit" class="btn btn-info" (click)="deleteProduct()">Ok</button> -->
+      <!-- <div class="container"> -->
+        <!-- Modal Crear Curso -->
+
+                      <form #formCrear="ngForm">
+                        <div class="form-group row">
+                          <label class="col-sm-8 col-form-label">
+                            <h3><strong>Añadir Curso</strong></h3>
+                          </label>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-2 col-form-label">
+                            <h4><strong>Activo</strong></h4>
+                          </div>
+                          <div>
+                            <div class="form-check">
+                              <input class="form-check-input input-check" name="select" type="checkbox" id="gridCheck1" 
+                              [(ngModel)]="cursoNuevo.state"/>
+                            </div>
+                          </div>
+                        </div>
+      
+                       
+                        <div class="form-group row">
+                          <label class="col-sm-2 col-form-label">
+                            <h4><strong>Profesor</strong></h4>
+                          </label>
+                          <div class=".col-xs-3 input-form">
+                            <select class="form-control" name="select" [(ngModel)]="cursoNuevo.teacherid">
+                              <option *ngFor="let profesor of profesores" [ngValue]="profesor.id">
+                                {{profesor.name}}</option>
+                            </select>
+                          </div>
+                        </div>
+                      
+                        
+                        <div class="form-group row">
+                          <label class="col-sm-2 col-form-label">
+                            <h4><strong>Titulo</strong></h4>
+                          </label>
+                          <div class=".col-xs-3 input-form">
+                            <input type="text" name="name" class="form-control" placeholder="Titulo" [(ngModel)]="cursoNuevo.title" />
+                          </div>
+                        </div>
+                    
+                        <div class="form-group row">
+                          <label class="col-sm-2 col-form-label">
+                            <h4><strong>Nivel</strong></h4>
+                          </label>
+                          <div class=".col-xs-3 input-form">
+                            <select class="form-control"  name="select" [(ngModel)]="cursoNuevo.level" style="padding-right: 100px;" >
+                              <option *ngFor="let level of levels" [ngValue]="level">
+                                {{level}}</option>
+                            </select>
+                          </div>
+                        </div>
+                            
+                        <div class="form-group row">
+                          <label class="col-sm-2 col-form-label">
+                            <h4><strong>Horas</strong></h4>
+                          </label>
+                           <!--  <div class=".col-xs-3 input-form custom-select">-->
+                   <!-- <input list="encodings" class=".col-xs-3 input-form custom-select ">-->
+                          <select class="form-control .col-xs-3 input-form custom-select" name="select" [(ngModel)]="cursoNuevo.hours">
+                            <option *ngFor="let hours of hoursLoop" [ngValue]="hours">                      
+                              {{hours}}</option>
+                          </select>
+                        </div>
+                       <!-- </div>-->
+                        <div class="form-group row">
+                          <div class="col-sm-10">
+                            <button type="button"  class="btn btn-primary" (click)="guardarCurso()" [disabled]="!formCrear.form.valid"
+                            data-dismiss="modal">Añadir</button>
+                          </div>
+                        </div>
+                      </form>
+        <!-- </div> -->
+      <button type="submit" class="btn btn-info" (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+</app-modal>
