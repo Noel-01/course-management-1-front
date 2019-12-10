@@ -1,0 +1,37 @@
+#m-5 {
+    margin-left: 10px;
+}
+
+#level option {
+    width: 100px;
+}
+
+.modalm {
+    size: 500px;
+    width: 500px;
+    margin-left: 200px;
+    margin-right: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+
+.input-form {
+    margin-left: 50px;
+}
+
+.input-check {
+    margin-left: 30px;
+}
+
+input[type=checkbox] {
+    transform: scale(1.5);
+    margin-top: 17px;
+}
+
+.modal-content {
+    background-color: transparent;
+}
+
+.custom-select {
+    width: auto;
+}
