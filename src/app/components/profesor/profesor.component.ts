@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { profesor } from 'src/app/model/profesor';
+import { Profesor } from 'src/app/model/Profesor';
 import { ProfesorService } from 'src/app/services/profesor.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ProfesorService } from 'src/app/services/profesor.service';
 })
 export class ProfesorComponent implements OnInit {
 
-  public profesores: Array<profesor>
+  public profesores: Array<Profesor>
 
   constructor(private _profesorService: ProfesorService) { }
 

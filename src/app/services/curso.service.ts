@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Http, Response, Headers } from '@angular/http';
-import { curso } from '../model/curso';
+import { Curso } from '../model/Curso';
 import 'rxjs/add/operator/map';
 
 @Injectable({
@@ -21,13 +21,10 @@ export class CursoService {
     };
 
     getCursos() {
-        console.log("llega");
         return this._http.get(this.url + '/activeCourses').map(res => res.json())
     }
 
-    createCurso(curso: curso) {
-        console.log("createeee")
-        console.log(curso)
+    createCurso(curso: Curso) {
         return this._http.post(this.url + '/create', JSON.stringify(curso), this.httpOptions)
     }
 }

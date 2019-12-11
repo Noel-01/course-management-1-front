@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { curso } from 'src/app/model/curso';
+import { Curso } from 'src/app/model/Curso';
 import { CursoService } from 'src/app/services/curso.service';
 import { ProfesorService } from 'src/app/services/profesor.service';
-import { profesor } from 'src/app/model/profesor';
+import { Profesor } from 'src/app/model/Profesor';
 import { ModalService } from 'src/app/services/modal.service';
 
 
@@ -15,88 +15,70 @@ import { ModalService } from 'src/app/services/modal.service';
 
 export class CursoComponent implements OnInit {
 
-  public cursos: Array<curso>
-  public profesores: Array<profesor>
-  public cursoNuevo : curso
+  public cursos: Array<Curso>
+  public profesores: Array<Profesor>
+  public cursoNuevo : Curso
   public levels: Array<string>
-  public pr: string
   public hoursLoop: any
 
   constructor(
-    private _cursoService: CursoService,
-    private _profesorService: ProfesorService,
+    private cursoService: CursoService,
+    private profesorService: ProfesorService,
     private modalService: ModalService
     ) {
-    this.cursoNuevo = new curso();
+    this.cursoNuevo = new Curso();
     this.cursoNuevo.state=false;
     this.levels = ['Basico', 'Intermedio', 'Experto']
    }
 
   ngOnInit() {
     this.mostrarCursos()
-    // this.getProfesores()
-    this.getHoras()
   }
 
   closeModal() {
-    // this.modalService.open('test-modal');
     this.modalService.close('test-modal');
   }
 
   mostrarCursos(){
-    this._cursoService.getCursos().subscribe((result) => {
+    this.cursoService.getCursos().subscribe((result) => {
       this.cursos = result;
       console.log(this.cursos)
     },
     error => {
-      console.log("Error")
       console.log(error)
     });
+  }
+
+  getDatosModal(){
+    this.getProfesores();
+    this.getHoras()
+    this.cursoNuevo = new Curso();
   }
 
   getProfesores(){
     this.modalService.open('test-modal');
-    this._profesorService.getProfesores().subscribe((result)=>{
-      this.profesores = result;
-      console.log(this.profesores)
+    this.profesorService.getProfesores().subscribe((result)=>{
+    this.profesores = result;
     },
     error => {
-      console.log("Error")
       console.log(error)
     });
   }
 
-  //pasarle por aqui el curso nuevo que voy a guardar
   guardarCurso(){
-    this.modalService.close('test-modal');
-    console.log("llega a guardar curso")
-    console.log(this.cursoNuevo.state)
-    console.log(this.cursoNuevo.title)
-    console.log(this.cursoNuevo.level)
-    this._cursoService.createCurso(this.cursoNuevo).subscribe((result)=>{
-      console.log("curso guardado")
-   //   this.closeModal();
+    this.cursoService.createCurso(this.cursoNuevo).subscribe((result)=>{
     },
     error => {
-      console.log("Error")
       console.log(error)
-   //   this.closeModal();
     });
-    
-
-
+    this.mostrarCursos()
+    this.closeModal()
   }
-
-  // closeModal() {
-  //   console.log("llega a closeModal")
-  //   this.mostrarCursos();
-  // }
 
   getHoras(){
     this.hoursLoop = new Array(); 
     for(let i = 0; i<250; i++){
       this.hoursLoop.push(i); 
     }
-    console.log(this.hoursLoop)
   }
 }

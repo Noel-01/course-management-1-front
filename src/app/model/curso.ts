@@ -1,5 +1,5 @@
 
-export class curso{
+export class Curso {
     id: number
     title: string
     level: string

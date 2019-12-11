@@ -2,6 +2,7 @@
 
 # compiled output
 /dist
+<<<<<<< Updated upstream
 /dist-server
 /tmp
 /out-tsc
@@ -9,6 +10,19 @@
 # dependencies
 /node_modules
 package-lock.json
+=======
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
+
+# dependencies
+/node_modules
+
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
+>>>>>>> Stashed changes
 
 # IDEs and editors
 /.idea
@@ -25,6 +39,10 @@ package-lock.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+<<<<<<< Updated upstream
+=======
+.history/*
+>>>>>>> Stashed changes
 
 # misc
 /.sass-cache
@@ -36,10 +54,13 @@ yarn-error.log
 testem.log
 /typings
 
+<<<<<<< Updated upstream
 # e2e
 /e2e/*.js
 /e2e/*.map
 
+=======
+>>>>>>> Stashed changes
 # System Files
 .DS_Store
 Thumbs.db

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { profesor } from '../model/profesor';
+import { Profesor } from '../model/Profesor';
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +13,7 @@ export class ProfesorService {
     constructor(private httpClient: HttpClient) { }
 
     public getProfesores(){
-        console.log("llegasadfasfdadfadfafasdfasfasdfasdfsad");
-        return this.httpClient.get<profesor[]>(this.url + '/getAll');
+        return this.httpClient.get<Profesor[]>(this.url + '/getAll');
     }
 }
 

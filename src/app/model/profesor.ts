@@ -1,5 +1,5 @@
 
-export class profesor{
+export class Profesor {
     id: number
     teacherName: string
 }

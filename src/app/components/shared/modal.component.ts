@@ -27,21 +27,18 @@ export class ModalComponent implements OnInit, OnDestroy {
           return;
       }
 
-      // move element to bottom of page (just before </body>) so it can be displayed above everything else
+
       document.body.appendChild(this.element);
 
-      // close modal on background click
+
       this.element.addEventListener('click', function (e: any) {
           if (e.target.className === 'app-modal') {
               modal.close();
           }
       });
-
-      // add self (this modal instance) to the modal service so it's accessible from controllers
       this.modalService.add(this);
   }
 
-  // remove self from modal service when component is destroyed
   ngOnDestroy(): void {
       this.modalService.remove(this.id);
       this.element.remove();
