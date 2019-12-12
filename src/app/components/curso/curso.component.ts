@@ -4,6 +4,7 @@ import { CursoService } from 'src/app/services/curso.service';
 import { ProfesorService } from 'src/app/services/profesor.service';
 import { Profesor } from 'src/app/model/Profesor';
 import { ModalService } from 'src/app/services/modal.service';
+import { Pageable } from 'src/app/model/pageable';
 
 
 @Component({
@@ -20,6 +21,9 @@ export class CursoComponent implements OnInit {
   public cursoNuevo : Curso
   public levels: Array<string>
   public hoursLoop: any
+  public page: Pageable;
+  public pageNumber: number = 0;
+  public totalPaginas: number;
 
   constructor(
     private cursoService: CursoService,
@@ -32,17 +36,33 @@ export class CursoComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.mostrarCursos()
+    this.mostrarCursos("")
   }
 
   closeModal() {
     this.modalService.close('test-modal');
   }
 
-  mostrarCursos(){
-    this.cursoService.getCursos().subscribe((result) => {
-      this.cursos = result;
-      console.log(this.cursos)
+  mostrarCursos(event: string){
+
+    if (event == "previous") {
+      console.log("entra en previous")
+      this.pageNumber = this.pageNumber - 1;
+      console.log("pageNumber vale -" + this.pageNumber)
+    } else if (event == "next") {
+      console.log("entra en previous")
+      this.pageNumber = this.pageNumber + 1;
+      console.log("pageNumber vale -" + this.pageNumber)
+    }
+
+    this.cursoService.getCursos(this.pageNumber).subscribe((result) => {
+      console.log(result)
+      this.page = result;
+      this.cursos = this.page.list;
+      this.totalPaginas = this.page.totalPaginas;
+      console.log("Cursos---> " + this.cursos)
+      console.log("Pagina act ----> " + this.page.paginaActual)
+      console.log("Pagina total el ----> " + this.page.totalPaginas)
     },
     error => {
       console.log(error)
@@ -71,7 +91,7 @@ export class CursoComponent implements OnInit {
     error => {
       console.log(error)
     });
-    this.mostrarCursos()
+    this.mostrarCursos("")
     this.closeModal()
   }
 

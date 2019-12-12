@@ -23,11 +23,15 @@
       </table>
       <nav aria-label="Page navigation example">
         <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+
+          <li *ngIf="pageNumber > 0" class="page-item" (click)="mostrarCursos('previous')"><a class="page-link" href="#">Previous</a></li>
+          <li *ngIf="pageNumber > 0" class="page-item" (click)="mostrarCursos('previous')"><a class="page-link" href="#">{{pageNumber - 1}}</a></li>
+
+          <li class="page-item" ><button id="selection">{{pageNumber}}</button></li>
+
+          <li *ngIf="pageNumber != totalPaginas" class="page-item" (click)="mostrarCursos('next')"><a class="page-link" href="#">{{pageNumber + 1}}</a></li>
+          <li *ngIf="pageNumber != totalPaginas" class="page-item" (click)="mostrarCursos('next')"><a class="page-link" href="#">Next</a></li>
+
           <li id="m-5"> <a style="color:white" class="btn btn-primary btn" (click)="getDatosModal()">Nuevo Curso</a>
           </li>
         </ul>
@@ -98,7 +102,7 @@
           <div class="col-sm-10">
             <button type="button" class="btn btn-primary" (click)="guardarCurso()" [disabled]="!formCrear.form.valid"
               data-dismiss="modal">Añadir</button>
-              <button type="submit" class="btn btn-info" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="btn btn-info" (click)="closeModal()">Cancel</button>
           </div>
         </div>
       </form>

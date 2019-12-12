@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Curso } from '../model/Curso';
 import 'rxjs/add/operator/map';
 
@@ -20,8 +19,9 @@ export class CursoService {
         })
     };
 
-    getCursos() {
-        return this._http.get(this.url + '/activeCourses').map(res => res.json())
+    getCursos(pg: number) {
+        console.log("llega")
+        return this._http.get(this.url + '/activeCourses/' + pg).map(res => res.json())
     }
 
     createCurso(curso: Curso) {

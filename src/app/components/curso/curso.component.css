@@ -2,6 +2,17 @@
     margin-left: 10px;
 }
 
+#selection {
+    background-color:dodgerblue;
+    width: 38px;
+    height: 38px;
+    color: white;
+}
+
+.page-link next {
+    border-radius: 50px;
+}
+
 .input-form {
     margin-left: 50px;
 }
@@ -26,3 +37,4 @@ input[type=checkbox] {
 .btn-primary{
     margin-right: 5px;
 }
+
