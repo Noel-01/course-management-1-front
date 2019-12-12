@@ -24,13 +24,17 @@
       <nav aria-label="Page navigation example">
         <ul class="pagination">
 
-          <li *ngIf="pageNumber > 0" class="page-item" (click)="mostrarCursos('previous')"><a class="page-link" href="#">Previous</a></li>
-          <li *ngIf="pageNumber > 0" class="page-item" (click)="mostrarCursos('previous')"><a class="page-link" href="#">{{pageNumber - 1}}</a></li>
+          <li *ngIf="pageNumber > 0" class="page-item" (click)="mostrarCursos('previous')"><a class="page-link"
+              href="#">Previous</a></li>
+          <li *ngIf="pageNumber > 0" class="page-item" (click)="mostrarCursos('previous')"><a class="page-link"
+              href="#">{{pageNumber - 1}}</a></li>
 
-          <li class="page-item" ><button id="selection">{{pageNumber}}</button></li>
+          <li class="page-item"><button id="selection">{{pageNumber}}</button></li>
 
-          <li *ngIf="pageNumber != totalPaginas" class="page-item" (click)="mostrarCursos('next')"><a class="page-link" href="#">{{pageNumber + 1}}</a></li>
-          <li *ngIf="pageNumber != totalPaginas" class="page-item" (click)="mostrarCursos('next')"><a class="page-link" href="#">Next</a></li>
+          <li *ngIf="pageNumber != totalPaginas" class="page-item" (click)="mostrarCursos('next')"><a class="page-link"
+              href="#">{{pageNumber + 1}}</a></li>
+          <li *ngIf="pageNumber != totalPaginas" class="page-item" (click)="mostrarCursos('next')"><a class="page-link"
+              href="#">Next</a></li>
 
           <li id="m-5"> <a style="color:white" class="btn btn-primary btn" (click)="getDatosModal()">Nuevo Curso</a>
           </li>
@@ -75,7 +79,8 @@
             <h4><strong>Titulo</strong></h4>
           </label>
           <div class=".col-xs-3 input-form">
-            <input type="text" name="name" class="form-control" placeholder="Titulo" [(ngModel)]="cursoNuevo.title" />
+            <input type="text" name="name" class="form-control" placeholder="Titulo" [(ngModel)]="cursoNuevo.title"
+              oninput="this.value = this.value.toUpperCase()" />
           </div>
         </div>
         <div class="form-group row">

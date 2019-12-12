@@ -20,7 +20,6 @@ export class CursoService {
     };
 
     getCursos(pg: number) {
-        console.log("llega")
         return this._http.get(this.url + '/activeCourses/' + pg).map(res => res.json())
     }
 
